@@ -7,6 +7,7 @@ class User
         $hasDetails = isset($_POST['username'], $_POST['password'], $_POST['password_confirmation']);
 
         if ($hasDetails) {
+            Auth::validate_csrf();
             $username = $_POST['username'];
             $password = $_POST['password'];
             $password_confirmation = $_POST['password_confirmation'];
