@@ -4,9 +4,7 @@ class Auth
 {
     public static function user()
     {
-        if (User::logged_in()) {
-            $GLOBALS['user'] = User::current();
-        } else {
+        if (!User::logged_in()) {
             header('Location: /login.php');
             die();
         }
@@ -22,8 +20,13 @@ class Auth
 
     public static function csrf_field()
     {
-        $token = bin2hex(random_bytes(32));
-        $_SESSION['token'] = $token;
+        if (isset($_SESSION['token'])) {
+            $token = $_SESSION['token'];
+        } else {
+            $token = bin2hex(random_bytes(32));
+            $_SESSION['token'] = $token;
+        }
+        
         return "<input type='hidden' name='csrf' value='$token'>";
     }
 
