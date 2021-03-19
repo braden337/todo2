@@ -2,7 +2,6 @@
 require_once '../app.php';
 
 Auth::user();
-
 ?>
 
 <h1><?= $user->name ?> todos</h1>
