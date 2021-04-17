@@ -3,6 +3,8 @@ require_once '../app.php';
 
 Auth::guest();
 User::register();
+
+include 'header.php'
 ?>
 
 <form action="/register.php" method="POST">
@@ -14,3 +16,5 @@ User::register();
     or
     <a href="/login.php">Login</a>
 </form>
+
+<?php include 'footer.php' ?>
